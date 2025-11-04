@@ -2,7 +2,7 @@ Thanks for the thorough review and for flagging the mismatch between the publish
 
 ---
 
-## 1. Quick Summary
+## 1. What i understood
 
 - The same code ships to both the backtester and the Docker containers; there’s no hidden logic gap.  
 - The drift comes from runtime inputs—today’s market structure, the parameters being used inside the container, and whether the bot receives enough history to start.  
@@ -69,3 +69,4 @@ Thanks for the thorough review and for flagging the mismatch between the publish
 1. **Make sure enough history loads:** Launch with `BOT_HISTORY = 450` and `BOT_STRATEGY_PARAMS = '{"preload_history_bars": 450, "min_history_bars": 288}'`. That mirrors the backtest.
 2. **Verify preload:** Wait for the log line reporting `preload_bars`. If it’s missing, the fetch failed; restart after verifying connectivity or I can add retry logic to harden this.
 3. **Operator checklist:** README now calls out the warm-up requirement. Let’s share a short pre-flight list (see next section) so Ops can confirm everything on launch.
+
